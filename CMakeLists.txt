@@ -12,7 +12,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp
+        src/code/headers/Clock.h
+        src/code/Clock.cpp)
 target_compile_features(main PRIVATE cxx_std_17)
 
 target_link_libraries(main PRIVATE 
