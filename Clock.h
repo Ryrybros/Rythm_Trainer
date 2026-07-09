@@ -1,4 +1,11 @@
-#pragma once
+//
+// Created by ryad on 7/9/26.
+//
+
+#ifndef BACKUPRYTHM_CLOCK_H
+#define BACKUPRYTHM_CLOCK_H
+
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <string>
@@ -31,9 +38,11 @@ private:
     //fractions names dict
     std::unordered_map<std::string, double> fractions;
     //sound management
-    std::string fileName = "src/assets/tick.wav";
+    std::string fileName = "assets/tick.wav";
     sf::SoundBuffer buffer;
     sf::Sound sound;
 
     std::thread clockThread;
 };
+
+#endif

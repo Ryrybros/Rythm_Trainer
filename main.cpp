@@ -2,8 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <optional>
-
-#include "code/headers/Clock.h"
+#include "Clock.h"
+#include "RhythmMaker.h"
 
 const int Width = 1200;
 const int Height = 800;
@@ -13,7 +13,7 @@ int main()
     sf::RenderWindow window( sf::VideoMode( { Width, Height } ), "SFML Rhythm Trainer" );
     window.setFramerateLimit(60); // Keeps rendering smooth and steady
 
-    sf::Font font("src/assets/Arial.ttf");
+    sf::Font font("assets/Arial.ttf");
 
     // 2. Setup the Timing Verdict Text (PERFECT / MISS)
     sf::Text verdictText(font);
@@ -37,7 +37,6 @@ int main()
     clock.start();
 
     std::string targetFraction = "1";
-
     while ( window.isOpen() )
     {
        while ( const std::optional event = window.pollEvent() )

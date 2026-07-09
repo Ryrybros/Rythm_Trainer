@@ -1,27 +1,34 @@
-cmake_minimum_required(VERSION 3.28)
-project(Rythm_Trainer LANGUAGES CXX)
+cmake_minimum_required(VERSION 4.2)
+project(backuprythm)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_CXX_STANDARD 20)
 
-# 1. Fetch SFML 3 from GitHub automatically
 include(FetchContent)
 FetchContent_Declare(
-    SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG        3.1.0 # Or 'master' depending on your template
-)
-FetchContent_MakeAvailable(SFML)
-
-add_executable(main src/main.cpp
-        src/code/headers/Clock.h
-        src/code/Clock.cpp)
-target_compile_features(main PRIVATE cxx_std_17)
-
-target_link_libraries(main PRIVATE 
-    SFML::Graphics
-    SFML::Audio
-    SFML::Window
-    SFML::System
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        3.1.0 # Or 'master' depending on your template
 )
 
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+)
+FetchContent_MakeAvailable(SFML googletest)
+
+enable_testing()
+add_subdirectory(tests)
+
+add_executable(backuprythm main.cpp
+        Clock.cpp
+        Clock.h
+        RhythmMaker.cpp
+        RhythmMaker.h)
+
+
+target_link_libraries(backuprythm PRIVATE
+        SFML::Graphics
+        SFML::Audio
+        SFML::Window
+        SFML::System
+)

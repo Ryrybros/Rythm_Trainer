@@ -1,7 +1,13 @@
+//
+// Created by ryad on 7/9/26.
+//
 
-#include "headers/Clock.h"
+#include "Clock.h"
 #include <iostream>
 #include <X11/Xlib.h>
+#include <math.h>
+#include <map>
+
 
 Clock::Clock() : sound(buffer) {
     if (!buffer.loadFromFile(fileName)) {
@@ -37,7 +43,6 @@ Clock::Clock() : sound(buffer) {
     fractions["11/12"] = 11.0 / 12;
 }
 
-#include <map>
 
 Clock::~Clock() {
     stop();
